@@ -6,6 +6,7 @@ patches: [
   "patches/use-host-ocamldoc.patch"
   "patches/use-host-ocamlrun.patch"
   "patches/no-ocamltest.patch"
+  "patches/0001-Fix-OCAML_OS_TYPE-not-being-replaced.patch"
 ]
 substs: [
   "Makefile.cross"
@@ -50,6 +51,8 @@ extra-files: [
     "patches/avoid-cygwin-specifics.patch"
     "md5=a57e6a27b28010f740fcca2399bb83ca"
   ]
+  ["patches/0001-Fix-OCAML_OS_TYPE-not-being-replaced.patch"
+   "md5=a06cd097a8b8f73e2f617f8ad1065753"]
 ]
 url {
   src: "https://github.com/ocaml/ocaml/archive/4.08.0.tar.gz"

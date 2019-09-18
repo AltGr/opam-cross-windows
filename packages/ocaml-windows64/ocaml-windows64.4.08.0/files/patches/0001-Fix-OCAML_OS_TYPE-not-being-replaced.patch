@@ -1,0 +1,27 @@
+From bb9fa36e3f02e45499819b537f8438de83df377d Mon Sep 17 00:00:00 2001
+From: Louis Gesbert <louis.gesbert@ocamlpro.com>
+Date: Wed, 18 Sep 2019 10:52:13 +0200
+Subject: [PATCH] Fix OCAML_OS_TYPE not being replaced
+
+---
+ stdlib/Makefile | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/stdlib/Makefile b/stdlib/Makefile
+index 67dc8bc47..34843f49c 100644
+--- a/stdlib/Makefile
++++ b/stdlib/Makefile
+@@ -234,7 +234,9 @@ stdlib.p.cmxa: $(OBJS:.cmo=.p.cmx)
+ 	$(CAMLOPT) -a -o $@ $^
+ 
+ sys.ml: $(ROOTDIR)/VERSION sys.mlp
+-	sed -e "s|%%VERSION%%|`sed -e 1q $< | tr -d '\r'`|" sys.mlp > $@
++	sed -e "s|%%VERSION%%|`sed -e 1q $< | tr -d '\r'`|" \
++	    -e "s|%%OCAML_OS_TYPE%%|${OCAML_OS_TYPE}|g" \
++	    sys.mlp > $@
+ 
+ .PHONY: clean
+ clean::
+-- 
+2.11.0
+
